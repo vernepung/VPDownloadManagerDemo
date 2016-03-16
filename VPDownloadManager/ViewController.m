@@ -22,17 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     NSArray *arr = @[@"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
-                     @"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg"];
+                     @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131129093958.mp4",
+                     @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131129093547.mp4",
+                     @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131129093221.mp4",
+                     @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131129093024.mp4",
+                     @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131129092501.mp4",
+                     @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131129092134.mp4",
+                     @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131128033936.mp4"];
     self.testTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 85, 300, 500)];
     self.testTableView.delegate = self;
     self.testTableView.dataSource = self;
