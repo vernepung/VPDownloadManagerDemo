@@ -10,7 +10,7 @@
 #import "BaseDownloadModel.h"
 @interface BaseDownloadCell : UITableViewCell
 @property (strong,nonatomic) BaseDownloadModel *currentModel;
-
-
+- (void)readedBytesUpdated;
+- (void)downloadStateChanged;
 + (instancetype)initCellFromXibWithTableView:(UITableView *)tableView;
 @end

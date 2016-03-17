@@ -28,17 +28,10 @@ static void * const VPOBSERVERCONTEXTKEY = @"VPOBSERVERCONTEXTKEY";
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 - (void)removeObserver
 {
     [_currentModel removeObserver:self forKeyPath:@"downloadState" context:VPOBSERVERCONTEXTKEY];
     [_currentModel removeObserver:self forKeyPath:@"readedBytes" context:VPOBSERVERCONTEXTKEY];
-//    [_currentModel removeObserver:self forKeyPath:@"totalBytes" context:VPOBSERVERCONTEXTKEY];
 }
 
 - (void)setCurrentModel:(BaseDownloadModel *)currentModel
@@ -51,8 +44,6 @@ static void * const VPOBSERVERCONTEXTKEY = @"VPOBSERVERCONTEXTKEY";
     {
         [currentModel addObserver:self forKeyPath:@"downloadState" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:VPOBSERVERCONTEXTKEY];
         [currentModel addObserver:self forKeyPath:@"readedBytes" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:VPOBSERVERCONTEXTKEY];
-//        [currentModel addObserver:self forKeyPath:@"totalBytes" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:VPOBSERVERCONTEXTKEY];
-        
         self.downloadBytesLabel.text = [NSString stringWithFormat:@"%@MB/%@MB",[self getSize:currentModel.readedBytes],[self getSize:currentModel.totalBytes]];
         [self.downloadBytesLabel sizeToFit];
     }
@@ -113,17 +104,23 @@ static void * const VPOBSERVERCONTEXTKEY = @"VPOBSERVERCONTEXTKEY";
                 self.stateLabel.text = @"后台监听正常";
                 break;
         }
-        self.stateLabel.text = [self.stateLabel.text stringByAppendingString:self.currentModel.mainId];
+        [self downloadStateChanged];
     }
     else if ([keyPath isEqualToString:@"readedBytes"])
     {
-        self.downloadBytesLabel.text = [NSString stringWithFormat:@"%@MB/%@MB",[self getSize:self.currentModel.readedBytes],[self getSize:self.currentModel.totalBytes]];
-        [self.downloadBytesLabel sizeToFit];
+        [self readedBytesUpdated];
     }
-//    else if ([keyPath isEqualToString:@"totalBytes"])
-//    {
-//        
-//    }
+}
+
+- (void)downloadStateChanged
+{
+    self.stateLabel.text = [self.stateLabel.text stringByAppendingString:self.currentModel.mainId];
+}
+
+- (void)readedBytesUpdated
+{
+    self.downloadBytesLabel.text = [NSString stringWithFormat:@"%@MB/%@MB",[self getSize:self.currentModel.readedBytes],[self getSize:self.currentModel.totalBytes]];
+    [self.downloadBytesLabel sizeToFit];
 }
 
 // downloadStateChanged
@@ -143,7 +140,6 @@ static void * const VPOBSERVERCONTEXTKEY = @"VPOBSERVERCONTEXTKEY";
         cell = [[self class] loadFromXib];
     }
     return cell;
-    //     APPayResultHeaderCell *headerCell = [self.resultTableview dequeueReusableCellWithIdentifier:[APPayResultHeaderCell cellIdentifier]];
 }
 
 + (id)loadFromXib
@@ -155,5 +151,12 @@ static void * const VPOBSERVERCONTEXTKEY = @"VPOBSERVERCONTEXTKEY";
 {
     return NSStringFromClass(self);
 }
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
+
 
 @end

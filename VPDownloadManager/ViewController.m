@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     NSArray *arr = @[@"http://dlsw.baidu.com/sw-search-sp/soft/9d/25765/sogou_mac_32c_V3.2.0.1437101586.dmg",
                      @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131129093958.mp4",
                      @"http://myvideo.open.com.cn/Dxztc/Attachment/Video/005/20131129093547.mp4",

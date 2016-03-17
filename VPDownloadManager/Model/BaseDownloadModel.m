@@ -15,7 +15,7 @@ __OSX_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
 @interface BaseDownloadModel()
 {
     
-}  
+}
 @end
 
 @implementation BaseDownloadModel
@@ -168,6 +168,10 @@ __OSX_AVAILABLE_STARTING(__MAC_10_4, __IPHONE_2_0);
 
 - (BOOL)isEqual:(id)object
 {
+    if (self == object)
+        return YES;
+    if (!object || ![object isKindOfClass:[self class]])
+        return NO;
     return [self hash] == [object hash];
 }
 @end
